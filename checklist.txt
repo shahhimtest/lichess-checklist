@@ -1,0 +1,12 @@
+Check potential weak enemy pieces
+Check all checks
+Check all captures
+Look at all forcing lines resulting from those
+
+Check weak squares in your and your enemys pawn structure
+Check your plans: How to accomplish, are they accomplishable anymore
+Evaluate your worst piece
+Check the squares that my move would weaken
+
+Predict your opponents plan & best moves: what would you want to do, were you the opponent?
+Calculate the meaning of opponent's last move, how it changes the position

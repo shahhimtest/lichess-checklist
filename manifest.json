@@ -1,0 +1,28 @@
+{
+	"manifest_version": 2,
+	"name": "lichess-checklist",
+	"version": "1.0",
+
+	"description": "Inserts a 'mental checklist' that you can fill during your Lichess games",
+	
+	"content_scripts":
+	[
+		{
+			"matches": 
+			[
+				"*://lichess.org/*"
+			],
+			"js":
+			[
+				"checklist-item.js",
+				"lichess-checklist.js"
+			]
+		}
+	],
+
+	"web_accessible_resources":
+	[
+		"checklist.txt",
+		"checklist_styles.css"
+	]
+}

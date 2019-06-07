@@ -1,0 +1,50 @@
+.round__side
+{
+	position: relative;
+}
+
+#checklist
+{
+	border-radius: 10px;
+	background-color: #262421;
+	transition: opacity 0.5s;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+	padding: 15px;
+}
+
+#checklist.hidden
+{
+	opacity: 0;
+}
+
+#checklist.shown
+{
+	opacity: 1;
+}
+
+.checklist-item
+{
+	transition: opacity 0.25s;
+	margin: 0 0 2px 0;
+}
+
+.checklist-item.checked
+{
+	opacity: 0.25;
+}
+
+.checklist-item input
+{
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+.checklist-break
+{
+	height: 2px;
+	width: 75%;
+	margin: 10px auto 10px auto;
+}
