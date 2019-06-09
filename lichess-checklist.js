@@ -7,6 +7,13 @@ let checkList;
 let checkListItems = [];
 let mainElement;
 let titleObserver;
+let dragging = false;
+
+let mElemPos =
+{
+	top: 0,
+	left: 0
+};
 
 async function loadAccessibleResource(resourcePath)
 {
@@ -52,6 +59,35 @@ function getTitleIndex(title)
 	mainElement = document.createElement("DIV");
 	mainElement.id = "checklist";
 	mainElement.className = "hidden";
+
+	// Create the draggable area
+	let dragArea = document.createElement("DIV");
+	dragArea.id = "checklist-dragarea";
+	mainElement.appendChild(dragArea);
+
+	// Make sure we can detect the mouse drags
+	dragArea.onmousedown = (event) => 
+	{
+		dragging = true;
+	};
+
+	document.body.onmouseup = (event) => 
+	{
+		dragging = false;
+	};
+
+	// Document the mouse movements for draggable functionality
+	document.onmousemove = (event) =>
+	{
+		if(dragging)
+		{
+			mElemPos.top += event.movementY;
+			mainElement.style.top = mElemPos.top + "px";
+			mElemPos.left += event.movementX;
+			mainElement.style.left = mElemPos.left + "px";
+		}
+	};
+
 	
 	// Create the checklist items and their respective checkboxes
 	for(let i = 0; i < checkList.length - 1; ++i)
@@ -85,6 +121,8 @@ function getTitleIndex(title)
 				document.getElementsByClassName(CHECKLIST_PARENT_CLASS)[0].appendChild(mainElement);
 			}
 			mainElement.className = "shown";
+			// Set the mainElement at the top
+			mainElement.style.zIndex = "666";
 
 			for(let item of checkListItems)
 			{
@@ -96,6 +134,8 @@ function getTitleIndex(title)
 		{
 			// It's enemys turn! Hide the checklist.
 			mainElement.className = "hidden";
+			// Set the mainElement behind the chatboxes etc.
+			mainElement.style.zIndex = "-1";
 		}
 	});
 	titleObserver.observe(document.getElementsByTagName("title")[0], {characterData: true, childList: true});
